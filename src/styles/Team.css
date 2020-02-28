@@ -1,0 +1,14 @@
+.teamContainer {
+  width: 250px;
+  border: solid 2px black;
+  margin-left: 20px;
+}
+
+.player {
+  padding: 5px;
+  border-top: solid 2px black;
+}
+
+.player:first-child {
+  border-top: none;
+}

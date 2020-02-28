@@ -1,0 +1,29 @@
+.addPlayerContainer {
+  padding: 20px;
+  width: 350px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.addPlayerContainer input {
+  padding: 5px;
+}
+
+.addPlayerContainer button {
+  padding: 5px 20px;
+  background-color: blue;
+  color: black;
+  border: none;
+}
+
+.addPlayerContainer button:hover {
+  padding: 5px 20px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+}
