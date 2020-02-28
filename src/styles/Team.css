@@ -1,14 +1,50 @@
 .teamContainer {
   width: 250px;
-  border: solid 2px black;
+
   margin-left: 20px;
 }
 
 .player {
   padding: 5px;
-  border-top: solid 2px black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .player:first-child {
-  border-top: none;
+  border-top: 2px solid black;
+}
+
+.playerImagesContainer {
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+}
+
+.addPoints {
+  width: 25px;
+  height: 100%;
+  background-image: url("../images/muffin.jpg");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.playerPoints {
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+.substractPoints {
+  width: 25px;
+  height: 100%;
+  background-image: url("../images/angrypepe.PNG");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 }
