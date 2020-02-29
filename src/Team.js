@@ -5,11 +5,23 @@ const Team = props => {
   const player = props.players.map((player, i) => (
     <div className="player" key={player.id}>
       <span>{player.name}</span>
-      <div>
-        <span>{player.points}</span>
-        <button onClick={() => props.AddPoints(player.id)}>+</button>
+      <div className="playerImagesContainer">
+        <span className="playerPoints">{player.points}</span>
+        <div
+          className="addPoints"
+          onClick={() => props.addPoints(player.id)}
+        ></div>
         {props.admin ? (
-          <button onClick={() => props.deletePlayer(player.id)}>X</button>
+          <div
+            className="substractPoints"
+            onClick={() => props.substractPoint(player.id)}
+          ></div>
+        ) : null}
+        {props.admin ? (
+          <i
+            class="trash alternate icon"
+            onClick={() => props.deletePlayer(player.id)}
+          ></i>
         ) : null}
       </div>
     </div>

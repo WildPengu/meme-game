@@ -70,7 +70,18 @@ class App extends React.Component {
     this.setState({ players });
   };
 
-  AddPoints = id => {
+  substractPoint = id => {
+    let players = this.state.players;
+    players.findIndex(player => {
+      if (player.id === id) {
+        player.points--;
+      }
+    });
+
+    this.setState({ players });
+  };
+
+  addPoints = id => {
     let players = this.state.players;
     players.findIndex(player => {
       if (player.id === id) {
@@ -90,18 +101,22 @@ class App extends React.Component {
   render() {
     return (
       <div className="gameContainer">
-        <AddPlayer
-          inputValue={this.state.addPlayer}
-          getInputValue={this.getInputValue}
-          addNewPlayer={this.addNewPlayer}
-        />
+        <div className="header">
+          <AddPlayer
+            inputValue={this.state.addPlayer}
+            getInputValue={this.getInputValue}
+            addNewPlayer={this.addNewPlayer}
+            admin={this.state.admin}
+          />
+          <Admin changeAdminStatus={this.changeAdminStatus} />
+        </div>
         <Team
           players={this.state.players}
           deletePlayer={this.deletePlayer}
           admin={this.state.admin}
-          AddPoints={this.AddPoints}
+          addPoints={this.addPoints}
+          substractPoint={this.substractPoint}
         />
-        <Admin changeAdminStatus={this.changeAdminStatus} />
       </div>
     );
   }

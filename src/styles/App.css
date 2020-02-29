@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  font-family: Sans-Serif;
 }
 
 .gameContainer {
@@ -8,4 +8,9 @@ body {
   background-image: url("../images/background/5.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
 }

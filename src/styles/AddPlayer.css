@@ -2,7 +2,6 @@
   padding: 20px;
   width: 350px;
   display: flex;
-  justify-content: space-evenly;
 }
 
 .addPlayerContainer input {
@@ -10,6 +9,7 @@
 }
 
 .addPlayerContainer button {
+  margin-left: 5px;
   padding: 5px 20px;
   background-color: blue;
   color: black;
@@ -17,13 +17,17 @@
 }
 
 .addPlayerContainer button:hover {
-  padding: 5px 20px;
   color: white;
-  border: none;
   cursor: pointer;
 }
 
 .player {
   display: flex;
   justify-content: space-between;
+}
+
+.addPlayer {
+  height: 100%;
+  width: 20px;
+  background-color: red;
 }
