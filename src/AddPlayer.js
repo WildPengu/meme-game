@@ -2,9 +2,12 @@ import React from "react";
 import "./styles/AddPlayer.css";
 
 const AddPlayer = props => {
+  const onFormSubmit = e => {
+    e.preventDefault();
+  };
   return (
     <>
-      <div className="addPlayerContainer">
+      <form className="addPlayerContainer" onSubmit={onFormSubmit}>
         {props.admin ? (
           <div>
             <div className="inputAndButtonContainer">
@@ -17,7 +20,7 @@ const AddPlayer = props => {
             <span className="error">{props.error}</span>
           </div>
         ) : null}
-      </div>
+      </form>
     </>
   );
 };

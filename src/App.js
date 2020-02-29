@@ -152,6 +152,9 @@ class App extends React.Component {
           />
           <Admin changeAdminStatus={this.changeAdminStatus} />
         </div>
+        <div className="pointsAmount">
+          Actual points amount: {this.state.pointsAmount}
+        </div>
         <Team
           players={this.state.players}
           deletePlayer={this.deletePlayer}

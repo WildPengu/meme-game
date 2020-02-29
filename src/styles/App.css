@@ -14,3 +14,11 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.pointsAmount {
+  font-size: 18px;
+  width: 400px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+}
