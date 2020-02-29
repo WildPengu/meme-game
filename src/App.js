@@ -9,27 +9,43 @@ class App extends React.Component {
     admin: false,
     addPlayer: "",
     error: "",
+    pointsAmount: 1,
     players: [
       {
         id: 1,
         name: "Puszek",
-        points: 5
+        points: 5,
+        getPointRecently: false,
+        style: { opacity: "0.5" }
       },
       {
         id: 2,
         name: "Mickiewicz",
-        points: 0
+        points: 0,
+        getPointRecently: false,
+        style: { opacity: "0.5" }
       },
       {
         id: 3,
         name: "Muffinka",
-        points: 17
+        points: 17,
+        getPointRecently: false,
+        style: { opacity: "0.5" }
       }
     ]
   };
 
+  trimInputValue = () => {
+    let inputValue = this.state.addPlayer;
+    inputValue = inputValue.trim();
+    this.setState({
+      addPlayer: inputValue
+    });
+    return inputValue;
+  };
+
   inputValidation = () => {
-    if (this.state.addPlayer === "") {
+    if (this.trimInputValue() === "") {
       this.setState({
         error: "Pole jest puste"
       });
@@ -43,8 +59,9 @@ class App extends React.Component {
     if (this.inputValidation()) {
       const newPlayer = {
         id: this.idCounter,
-        name: this.state.addPlayer,
-        points: 0
+        name: this.trimInputValue(),
+        points: 0,
+        style: { opacity: "0.5" }
       };
       this.idCounter++;
 
@@ -52,7 +69,8 @@ class App extends React.Component {
         return { players: [...previousState.players, newPlayer] };
       });
       this.setState({
-        addPlayer: ""
+        addPlayer: "",
+        error: ""
       });
     }
   };
@@ -73,28 +91,51 @@ class App extends React.Component {
   substractPoint = id => {
     let players = this.state.players;
     players.findIndex(player => {
-      if (player.id === id) {
-        player.points--;
+      if (player.id === id && player.getPointRecently) {
+        if (player.points - (this.state.pointsAmount - 1) < 0) {
+          player.getPointRecently = false;
+          player.points = 0;
+          player.style = { opacity: "0.5" };
+        } else {
+          player.points = player.points - (this.state.pointsAmount - 1);
+          player.getPointRecently = false;
+          player.style = { opacity: "0.5" };
+        }
+        this.setState({
+          players,
+          pointsAmount: this.state.pointsAmount - 1
+        });
       }
     });
+  };
 
-    this.setState({ players });
+  setDeleteToUnactive = id => {
+    let players = this.state.players;
+    players.findIndex(player => {
+      if (player.id !== id) {
+        player.getPointRecently = false;
+        player.style = { opacity: "0.5" };
+      }
+    });
   };
 
   addPoints = id => {
     let players = this.state.players;
     players.findIndex(player => {
       if (player.id === id) {
-        player.points++;
+        player.points = player.points + this.state.pointsAmount;
+        player.getPointRecently = true;
+        player.style = { opacity: "1" };
       }
     });
-
-    this.setState({ players });
+    this.setDeleteToUnactive(id);
+    this.setState({ players, pointsAmount: this.state.pointsAmount + 1 });
   };
 
   changeAdminStatus = () => {
     this.setState({
-      admin: !this.state.admin
+      admin: !this.state.admin,
+      error: ""
     });
   };
 
@@ -107,6 +148,7 @@ class App extends React.Component {
             getInputValue={this.getInputValue}
             addNewPlayer={this.addNewPlayer}
             admin={this.state.admin}
+            error={this.state.error}
           />
           <Admin changeAdminStatus={this.changeAdminStatus} />
         </div>

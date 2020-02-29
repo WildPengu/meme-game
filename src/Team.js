@@ -13,13 +13,14 @@ const Team = props => {
         ></div>
         {props.admin ? (
           <div
+            style={player.style}
             className="substractPoints"
             onClick={() => props.substractPoint(player.id)}
           ></div>
         ) : null}
         {props.admin ? (
           <i
-            class="trash alternate icon"
+            className="trash alternate icon"
             onClick={() => props.deletePlayer(player.id)}
           ></i>
         ) : null}

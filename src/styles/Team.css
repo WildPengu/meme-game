@@ -1,14 +1,21 @@
 .teamContainer {
-  width: 250px;
-
-  margin-left: 20px;
+  width: 400px;
+  margin-left: 50px;
 }
 
 .player {
-  padding: 5px;
+  height: 45px;
+  padding: 5px 10px;
   border-left: 2px solid black;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.player span {
+  font-size: 20px;
 }
 
 .player:first-child {
@@ -21,9 +28,17 @@
   justify-content: space-evenly;
 }
 
+.playerImagesContainer i {
+  height: 35px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .addPoints {
-  width: 25px;
-  height: 100%;
+  width: 30px;
+  height: 35px;
   background-image: url("../images/muffin.jpg");
   background-size: cover;
   background-position: center;
@@ -33,6 +48,7 @@
 .playerPoints {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 30%;
 }
 
@@ -41,8 +57,8 @@
 }
 
 .substractPoints {
-  width: 25px;
-  height: 100%;
+  width: 30px;
+  height: 35px;
   background-image: url("../images/angrypepe.PNG");
   background-size: cover;
   background-position: center;
