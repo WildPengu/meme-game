@@ -47,9 +47,13 @@ class App extends React.Component {
   inputValidation = () => {
     if (this.trimInputValue() === "") {
       this.setState({
-        error: "Pole jest puste"
+        error: "Type player name"
       });
       return false;
+    } else if (this.trimInputValue().length > 15) {
+      this.setState({
+        error: "Your nick is too long"
+      });
     } else {
       return true;
     }
@@ -152,16 +156,23 @@ class App extends React.Component {
           />
           <Admin changeAdminStatus={this.changeAdminStatus} />
         </div>
-        <div className="pointsAmount">
-          Actual points amount: {this.state.pointsAmount}
-        </div>
-        <Team
-          players={this.state.players}
-          deletePlayer={this.deletePlayer}
-          admin={this.state.admin}
-          addPoints={this.addPoints}
-          substractPoint={this.substractPoint}
-        />
+        {this.state.players.length > 0 ? (
+          <div className="pointsAmount">
+            Next reward: +{this.state.pointsAmount}
+          </div>
+        ) : null}
+
+        {this.state.players.length > 0 ? (
+          <Team
+            players={this.state.players}
+            deletePlayer={this.deletePlayer}
+            admin={this.state.admin}
+            addPoints={this.addPoints}
+            substractPoint={this.substractPoint}
+          />
+        ) : (
+          <div className="noPlayersInfo">You should add players</div>
+        )}
       </div>
     );
   }
