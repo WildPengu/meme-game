@@ -119,7 +119,7 @@ class App extends React.Component {
     this.setState({ players });
   };
 
-  substractPoint = id => {
+  subtractPoint = id => {
     let players = this.state.players;
     players.findIndex(player => {
       if (player.id === id && player.getPointRecently) {
@@ -127,14 +127,24 @@ class App extends React.Component {
           player.getPointRecently = false;
           player.points = 0;
           player.style = { opacity: "0.5" };
+          player.series--;
         } else {
           player.points = player.points - (this.state.pointsAmount - 1);
           player.getPointRecently = false;
           player.style = { opacity: "0.5" };
+          player.series--;
         }
         this.setState({
           players,
           pointsAmount: this.state.pointsAmount - 1
+        });
+      }
+    });
+    players.findIndex(player => {
+      if (player.id !== id) {
+        player.coldSeries--;
+        this.setState({
+          players
         });
       }
     });
@@ -275,7 +285,7 @@ class App extends React.Component {
               deletePlayer={this.deletePlayer}
               admin={this.state.admin}
               addPoints={this.addPoints}
-              substractPoint={this.substractPoint}
+              substractPoint={this.subtractPoint}
             />
             <AchievementsContainer
               players={this.state.players}
