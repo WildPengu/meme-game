@@ -11,7 +11,7 @@ const Team = props => {
           className="addPoints"
           onClick={() => props.addPoints(player.id)}
         ></div>
-        {props.admin ? (
+        {props.admin && props.lastActionId === player.id ? (
           <div
             style={player.style}
             className="substractPoints"

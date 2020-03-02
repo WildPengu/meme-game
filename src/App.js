@@ -25,6 +25,7 @@ class App extends React.Component {
     addPlayer: "",
     error: "",
     pointsAmount: 1,
+    lastActionId: 0,
     players: [
       {
         id: 1,
@@ -56,7 +57,8 @@ class App extends React.Component {
         series: 0,
         coldSeries: 0
       }
-    ]
+    ],
+    previousPlayers: []
   };
 
   trimInputValue = () => {
@@ -120,34 +122,39 @@ class App extends React.Component {
   };
 
   subtractPoint = id => {
-    let players = this.state.players;
-    players.findIndex(player => {
-      if (player.id === id && player.getPointRecently) {
-        if (player.points - (this.state.pointsAmount - 1) < 0) {
-          player.getPointRecently = false;
-          player.points = 0;
-          player.style = { opacity: "0.5" };
-          player.series--;
-        } else {
-          player.points = player.points - (this.state.pointsAmount - 1);
-          player.getPointRecently = false;
-          player.style = { opacity: "0.5" };
-          player.series--;
-        }
-        this.setState({
-          players,
-          pointsAmount: this.state.pointsAmount - 1
-        });
-      }
+    this.setState({
+      players: this.state.previousPlayers,
+      pointsAmount: this.state.pointsAmount - 1,
+      lastActionId: 0
     });
-    players.findIndex(player => {
-      if (player.id !== id) {
-        player.coldSeries--;
-        this.setState({
-          players
-        });
-      }
-    });
+    // let players = this.state.players;
+    // players.findIndex(player => {
+    //   if (player.id === id && player.getPointRecently) {
+    //     if (player.points - (this.state.pointsAmount - 1) < 0) {
+    //       player.getPointRecently = false;
+    //       player.points = 0;
+    //       player.style = { opacity: "0.5" };
+    //       player.series--;
+    //     } else {
+    //       player.points = player.points - (this.state.pointsAmount - 1);
+    //       player.getPointRecently = false;
+    //       player.style = { opacity: "0.5" };
+    //       player.series--;
+    //     }
+    //     this.setState({
+    //       players,
+    //       pointsAmount: this.state.pointsAmount - 1
+    //     });
+    //   }
+    // });
+    // players.findIndex(player => {
+    //   if (player.id !== id) {
+    //     player.coldSeries--;
+    //     this.setState({
+    //       players
+    //     });
+    //   }
+    // });
   };
 
   setDeleteToUnactive = id => {
@@ -177,6 +184,7 @@ class App extends React.Component {
   };
 
   addPoints = id => {
+    const previousPlayers = JSON.parse(JSON.stringify(this.state.players));
     let players = this.state.players;
     players.findIndex(player => {
       if (player.id === id) {
@@ -188,7 +196,9 @@ class App extends React.Component {
     players = this.setPlayerSeries(id, players);
     this.setDeleteToUnactive(id);
     this.setState({
+      lastActionId: id,
       players,
+      previousPlayers: previousPlayers,
       pointsAmount: this.state.pointsAmount + 1
     });
   };
@@ -286,6 +296,7 @@ class App extends React.Component {
               admin={this.state.admin}
               addPoints={this.addPoints}
               substractPoint={this.subtractPoint}
+              lastActionId={this.state.lastActionId}
             />
             <AchievementsContainer
               players={this.state.players}
