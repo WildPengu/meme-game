@@ -3,6 +3,21 @@ import "./styles/App.css";
 import Team from "./Team";
 import AddPlayer from "./AddPlayer";
 import Admin from "./Admin";
+import calmDownDude from "./images/memes/calmDown.jpg";
+import AchievementsContainer from "./AchievementsContainer";
+import disabled from "./images/memes/disabled.jpg";
+import youSickMan from "./images/memes/ddd.png";
+import baka from "./images/memes/baka.jpg";
+import ruinedDay from "./images/memes/eca.jpg";
+import dabPengu from "./images/emotes/dabPengu.PNG";
+import beeHappy from "./images/emotes/beeHappy.PNG";
+import happyCat from "./images/emotes/happyCat.PNG";
+import happyPengu from "./images/emotes/happyPengu.PNG";
+import jinx from "./images/emotes/jinx.PNG";
+import meow from "./images/emotes/meow.PNG";
+import rammus from "./images/emotes/rammus.PNG";
+import iLoveIt from "./images/emotes/iLoveIt.PNG";
+
 class App extends React.Component {
   idCounter = 4;
   state = {
@@ -14,23 +29,32 @@ class App extends React.Component {
       {
         id: 1,
         name: "Puszek",
-        points: 5,
+        points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" }
+        style: { opacity: "0.5" },
+        achievements: [],
+        series: 0,
+        coldSeries: 0
       },
       {
         id: 2,
         name: "Mickiewicz",
         points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" }
+        style: { opacity: "0.5" },
+        achievements: [],
+        series: 0,
+        coldSeries: 0
       },
       {
         id: 3,
         name: "Muffinka",
-        points: 17,
+        points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" }
+        style: { opacity: "0.5" },
+        achievements: [],
+        series: 0,
+        coldSeries: 0
       }
     ]
   };
@@ -65,7 +89,10 @@ class App extends React.Component {
         id: this.idCounter,
         name: this.trimInputValue(),
         points: 0,
-        style: { opacity: "0.5" }
+        style: { opacity: "0.5" },
+        achievements: [],
+        series: 0,
+        coldSeries: 0
       };
       this.idCounter++;
 
@@ -123,6 +150,22 @@ class App extends React.Component {
     });
   };
 
+  setPlayerSeries = (id, players) => {
+    players.findIndex(player => {
+      if (player.id === id) {
+        player.series++;
+      } else {
+        player.series = 0;
+      }
+      if (player.id !== id) {
+        player.coldSeries++;
+      } else {
+        player.coldSeries = 0;
+      }
+    });
+    return players;
+  };
+
   addPoints = id => {
     let players = this.state.players;
     players.findIndex(player => {
@@ -132,8 +175,12 @@ class App extends React.Component {
         player.style = { opacity: "1" };
       }
     });
+    players = this.setPlayerSeries(id, players);
     this.setDeleteToUnactive(id);
-    this.setState({ players, pointsAmount: this.state.pointsAmount + 1 });
+    this.setState({
+      players,
+      pointsAmount: this.state.pointsAmount + 1
+    });
   };
 
   changeAdminStatus = () => {
@@ -143,7 +190,66 @@ class App extends React.Component {
     });
   };
 
+  checkAchievementsForDuplicates = (player, image) => {
+    let noDuplicate = true;
+    player.achievements.map(achievement => {
+      if (achievement === image) {
+        noDuplicate = false;
+      }
+    });
+    return noDuplicate;
+  };
+
+  addAchievementSeries = (image, player, whenActive, series) => {
+    if (
+      series === whenActive &&
+      this.checkAchievementsForDuplicates(player, image)
+    ) {
+      player.achievements.push(image);
+    }
+  };
+
+  addAchievementFirstBlood = (image, player, round) => {
+    if (
+      round === 2 &&
+      this.checkAchievementsForDuplicates(player, image) &&
+      player.series > 0
+    ) {
+      player.achievements.push(image);
+    }
+  };
+
+  addAchievementPoints = (image, player, mileStone) => {
+    if (
+      player.points >= mileStone &&
+      this.checkAchievementsForDuplicates(player, image)
+    ) {
+      player.achievements.push(image);
+    }
+  };
+
+  setAchievements = () => {
+    const round = this.state.pointsAmount;
+    const players = this.state.players.map(player => {
+      this.addAchievementSeries(calmDownDude, player, 3, player.series);
+      this.addAchievementSeries(youSickMan, player, 5, player.series);
+      this.addAchievementSeries(baka, player, 5, player.coldSeries);
+      this.addAchievementSeries(disabled, player, 7, player.coldSeries);
+      this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
+      this.addAchievementFirstBlood(dabPengu, player, round);
+      this.addAchievementPoints(beeHappy, player, 5);
+      this.addAchievementPoints(happyCat, player, 10);
+      this.addAchievementPoints(happyPengu, player, 20);
+      this.addAchievementPoints(iLoveIt, player, 30);
+      this.addAchievementPoints(jinx, player, 50);
+      this.addAchievementPoints(meow, player, 100);
+      this.addAchievementPoints(rammus, player, 250);
+    });
+    return players;
+  };
+
   render() {
+    this.setAchievements();
     return (
       <div className="gameContainer">
         <div className="header">
@@ -163,13 +269,19 @@ class App extends React.Component {
         ) : null}
 
         {this.state.players.length > 0 ? (
-          <Team
-            players={this.state.players}
-            deletePlayer={this.deletePlayer}
-            admin={this.state.admin}
-            addPoints={this.addPoints}
-            substractPoint={this.substractPoint}
-          />
+          <div style={{ display: "flex" }}>
+            <Team
+              players={this.state.players}
+              deletePlayer={this.deletePlayer}
+              admin={this.state.admin}
+              addPoints={this.addPoints}
+              substractPoint={this.substractPoint}
+            />
+            <AchievementsContainer
+              players={this.state.players}
+              rounds={this.state.pointsAmount}
+            />
+          </div>
         ) : (
           <div className="noPlayersInfo">You should add players</div>
         )}
