@@ -29,7 +29,7 @@ class Player extends React.Component {
             className="addPoints"
             onClick={() => this.props.addPoints(this.state.id)}
           ></div>
-          {this.props.admin && this.props.lastActionId === this.state.id ? (
+          {this.props.admin && this.props.canRemove === this.state.id ? (
             <div
               style={this.state.style}
               className="substractPoints"
@@ -39,7 +39,7 @@ class Player extends React.Component {
           {this.props.admin ? (
             <i
               className="trash alternate icon"
-              onClick={() => this.props.deletePlayer(this.state.player.id)}
+              onClick={() => this.props.deletePlayer()}
             ></i>
           ) : null}
         </div>

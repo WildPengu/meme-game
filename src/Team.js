@@ -9,9 +9,9 @@ const Team = props => {
       player={player}
       addPoints={props.addPoints}
       substractPoint={props.substractPoint}
-      deletePlayer={props.deletePlayer}
+      deletePlayer={() => props.deletePlayer(i)}
       admin={props.admin}
-      lastActionId={props.lastActionId}
+      canRemove={props.lastActionId}
     />
   ));
 
