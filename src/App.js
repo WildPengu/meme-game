@@ -223,20 +223,13 @@ class App extends React.Component {
   };
 
   addAchievementSeries = (image, player, whenActive, series) => {
-    if (
-      series === whenActive &&
-      this.checkAchievementsForDuplicates(player, image)
-    ) {
+    if (series === whenActive && this.checkAchievementsForDuplicates(player, image)) {
       player.achievements.push(image);
     }
   };
 
   addAchievementFirstBlood = (image, player, round) => {
-    if (
-      round === 2 &&
-      this.checkAchievementsForDuplicates(player, image) &&
-      player.series > 0
-    ) {
+    if (round === 2 && this.checkAchievementsForDuplicates(player, image) && player.series > 0) {
       player.achievements.push(image);
     }
   };
@@ -282,13 +275,11 @@ class App extends React.Component {
             admin={this.state.admin}
             error={this.state.error}
           />
-          <Admin changeAdminStatus={this.changeAdminStatus} />
+          <Admin changeAdminStatus={this.changeAdminStatus}/>
         </div>
-        {this.state.players.length > 0 ? (
-          <div className="pointsAmount">
-            Next reward: +{this.state.pointsAmount}
-          </div>
-        ) : null}
+        <div className="pointsAmount">
+          Next reward: +{this.state.pointsAmount}
+        </div>
 
         {this.state.players.length > 0 ? (
           <div style={{ display: "flex" }}>
