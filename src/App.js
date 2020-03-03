@@ -5,10 +5,7 @@ import AddPlayer from "./AddPlayer";
 import Admin from "./Admin";
 import joyPengu from "./images/emotes/joyPengu.PNG";
 import AchievementsContainer from "./AchievementsContainer";
-import sadKitten from "./images/emotes/sadKitten.PNG";
 import perfect from "./images/emotes/perfect.PNG";
-import pozytywnyOpos from "./images/memes/pozytywnyOpos.jpg";
-import ruinedDay from "./images/emotes/sadGnar.PNG";
 import dabPengu from "./images/emotes/dabPengu.PNG";
 import beeHappy from "./images/emotes/beeHappy.PNG";
 import happyCat from "./images/emotes/happyCat.PNG";
@@ -98,7 +95,7 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
+        goodAnswers: 0
       };
       this.idCounter++;
 
