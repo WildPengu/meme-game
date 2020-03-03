@@ -7,6 +7,9 @@ const Team = props => {
       <span>{player.name}</span>
       <div className="playerImagesContainer">
         <span className="playerPoints">{player.points}</span>
+        {props.admin ? (
+          <span className="playerAnswers">({player.goodAnwsers})</span>
+        ) : null}
         <div
           className="addPoints"
           onClick={() => props.addPoints(player.id)}

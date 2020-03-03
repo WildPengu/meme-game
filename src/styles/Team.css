@@ -52,6 +52,11 @@
   width: 30%;
 }
 
+.playerAnswers {
+  display: flex;
+  align-items: center;
+}
+
 .trash {
   cursor: pointer;
 }
