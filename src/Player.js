@@ -21,9 +21,11 @@ class Player extends React.Component {
       <div className="player" key={this.state.id}>
         <span>{this.state.name}</span>
         <div className="playerImagesContainer">
-          <span className="playerPoints">{this.state.points}</span>
+          <span className="playerPoints">{this.props.player.points}</span>
           {this.props.admin ? (
-            <span className="playerAnswers">({this.state.goodAnwsers})</span>
+            <span className="playerAnswers">
+              ({this.props.player.goodAnwsers})
+            </span>
           ) : null}
           <div
             className="addPoints"
