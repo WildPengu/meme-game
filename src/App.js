@@ -203,6 +203,7 @@ class App extends React.Component {
       previousPlayers: previousPlayers,
       pointsAmount: this.state.pointsAmount + 1
     });
+    this.setAchievements();
   };
 
   changeAdminStatus = () => {
@@ -264,7 +265,6 @@ class App extends React.Component {
   };
 
   render() {
-    this.setAchievements();
     return (
       <div className="gameContainer">
         <div className="header">
