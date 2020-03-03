@@ -3,7 +3,7 @@ import "./styles/App.css";
 import Team from "./Team";
 import AddPlayer from "./AddPlayer";
 import Admin from "./Admin";
-import calmDownDude from "./images/memes/calmDown.jpg";
+import joyPengu from "./images/emotes/joyPengu.PNG";
 import AchievementsContainer from "./AchievementsContainer";
 import sadKitten from "./images/emotes/sadKitten.PNG";
 import perfect from "./images/emotes/perfect.PNG";
@@ -35,7 +35,8 @@ class App extends React.Component {
         style: { opacity: "0.5" },
         achievements: [],
         series: 0,
-        coldSeries: 0
+        coldSeries: 0,
+        goodAnwsers: 0
       },
       {
         id: 2,
@@ -45,7 +46,8 @@ class App extends React.Component {
         style: { opacity: "0.5" },
         achievements: [],
         series: 0,
-        coldSeries: 0
+        coldSeries: 0,
+        goodAnwsers: 0
       },
       {
         id: 3,
@@ -55,7 +57,8 @@ class App extends React.Component {
         style: { opacity: "0.5" },
         achievements: [],
         series: 0,
-        coldSeries: 0
+        coldSeries: 0,
+        goodAnwsers: 0
       }
     ],
     previousPlayers: []
@@ -94,7 +97,8 @@ class App extends React.Component {
         style: { opacity: "0.5" },
         achievements: [],
         series: 0,
-        coldSeries: 0
+        coldSeries: 0,
+        goodAnwsers: 0
       };
       this.idCounter++;
 
@@ -189,6 +193,7 @@ class App extends React.Component {
     players.findIndex(player => {
       if (player.id === id) {
         player.points = player.points + this.state.pointsAmount;
+        player.goodAnwsers++;
         player.getPointRecently = true;
         player.style = { opacity: "1" };
       }
@@ -251,7 +256,7 @@ class App extends React.Component {
   setAchievements = () => {
     const round = this.state.pointsAmount;
     const players = this.state.players.map(player => {
-      this.addAchievementSeries(calmDownDude, player, 3, player.series);
+      this.addAchievementSeries(joyPengu, player, 3, player.series);
       this.addAchievementSeries(perfect, player, 5, player.series);
       // this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
       // this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
