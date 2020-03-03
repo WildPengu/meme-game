@@ -1,35 +1,51 @@
 import React from "react";
 
-const Player = props => {
-  console.log(props.player.style);
-  return (
-    <div className="player" key={props.player.id}>
-      <span>{props.player.name}</span>
-      <div className="playerImagesContainer">
-        <span className="playerPoints">{props.player.points}</span>
-        {props.admin ? (
-          <span className="playerAnswers">({props.player.goodAnwsers})</span>
-        ) : null}
-        <div
-          className="addPoints"
-          onClick={() => props.addPoints(props.player.id)}
-        ></div>
-        {props.admin && props.lastActionId === props.player.id ? (
+class Player extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: this.props.player.id,
+      name: this.props.player.name,
+      points: this.props.player.points,
+      getPointRecently: this.props.player.getPointRecently,
+      style: this.props.player.style,
+      achievements: this.props.player.achievements,
+      series: this.props.player.series,
+      coldSeries: this.props.coldSeries,
+      goodAnwsers: this.props.goodAnwsers
+    };
+  }
+
+  render(props) {
+    return (
+      <div className="player" key={this.state.id}>
+        <span>{this.state.name}</span>
+        <div className="playerImagesContainer">
+          <span className="playerPoints">{this.state.points}</span>
+          {this.props.admin ? (
+            <span className="playerAnswers">({this.state.goodAnwsers})</span>
+          ) : null}
           <div
-            style={props.player.style}
-            className="substractPoints"
-            onClick={() => props.substractPoint(props.player.id)}
+            className="addPoints"
+            onClick={() => this.props.addPoints(this.state.id)}
           ></div>
-        ) : null}
-        {props.admin ? (
-          <i
-            className="trash alternate icon"
-            onClick={() => props.deletePlayer(props.player.id)}
-          ></i>
-        ) : null}
+          {this.props.admin && this.props.lastActionId === this.state.id ? (
+            <div
+              style={this.state.style}
+              className="substractPoints"
+              onClick={() => this.props.substractPoint(this.state.id)}
+            ></div>
+          ) : null}
+          {this.props.admin ? (
+            <i
+              className="trash alternate icon"
+              onClick={() => this.props.deletePlayer(this.state.player.id)}
+            ></i>
+          ) : null}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Player;

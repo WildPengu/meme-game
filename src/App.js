@@ -29,7 +29,7 @@ class App extends React.Component {
         name: "Puszek",
         points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" },
+        style: { opacity: "1" },
         achievements: [],
         series: 0,
         coldSeries: 0,
@@ -40,7 +40,7 @@ class App extends React.Component {
         name: "Mickiewicz",
         points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" },
+        style: { opacity: "1" },
         achievements: [],
         series: 0,
         coldSeries: 0,
@@ -51,7 +51,7 @@ class App extends React.Component {
         name: "Muffinka",
         points: 0,
         getPointRecently: false,
-        style: { opacity: "0.5" },
+        style: { opacity: "1" },
         achievements: [],
         series: 0,
         coldSeries: 0,
@@ -95,7 +95,7 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnswers: 0
+        goodAnwsers: 0
       };
       this.idCounter++;
 
@@ -203,7 +203,6 @@ class App extends React.Component {
       previousPlayers: previousPlayers,
       pointsAmount: this.state.pointsAmount + 1
     });
-    this.setAchievements();
   };
 
   changeAdminStatus = () => {
@@ -224,13 +223,20 @@ class App extends React.Component {
   };
 
   addAchievementSeries = (image, player, whenActive, series) => {
-    if (series === whenActive && this.checkAchievementsForDuplicates(player, image)) {
+    if (
+      series === whenActive &&
+      this.checkAchievementsForDuplicates(player, image)
+    ) {
       player.achievements.push(image);
     }
   };
 
   addAchievementFirstBlood = (image, player, round) => {
-    if (round === 2 && this.checkAchievementsForDuplicates(player, image) && player.series > 0) {
+    if (
+      round === 2 &&
+      this.checkAchievementsForDuplicates(player, image) &&
+      player.series > 0
+    ) {
       player.achievements.push(image);
     }
   };
@@ -265,6 +271,7 @@ class App extends React.Component {
   };
 
   render() {
+    this.setAchievements();
     return (
       <div className="gameContainer">
         <div className="header">
@@ -275,7 +282,7 @@ class App extends React.Component {
             admin={this.state.admin}
             error={this.state.error}
           />
-          <Admin changeAdminStatus={this.changeAdminStatus}/>
+          <Admin changeAdminStatus={this.changeAdminStatus} />
         </div>
         <div className="pointsAmount">
           Next reward: +{this.state.pointsAmount}
