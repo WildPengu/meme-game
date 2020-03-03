@@ -253,9 +253,9 @@ class App extends React.Component {
     const players = this.state.players.map(player => {
       this.addAchievementSeries(calmDownDude, player, 3, player.series);
       this.addAchievementSeries(perfect, player, 5, player.series);
-      this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
-      this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
-      this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
+      // this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
+      // this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
+      // this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
       this.addAchievementFirstBlood(dabPengu, player, round);
       this.addAchievementPoints(beeHappy, player, 5);
       this.addAchievementPoints(happyCat, player, 10);
