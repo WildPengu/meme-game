@@ -5,10 +5,10 @@ import AddPlayer from "./AddPlayer";
 import Admin from "./Admin";
 import calmDownDude from "./images/memes/calmDown.jpg";
 import AchievementsContainer from "./AchievementsContainer";
-import disabled from "./images/memes/disabled.jpg";
-import youSickMan from "./images/memes/ddd.png";
-import baka from "./images/memes/baka.jpg";
-import ruinedDay from "./images/memes/eca.jpg";
+import sadKitten from "./images/emotes/sadKitten.PNG";
+import perfect from "./images/emotes/perfect.PNG";
+import pozytywnyOpos from "./images/memes/pozytywnyOpos.jpg";
+import ruinedDay from "./images/emotes/sadGnar.PNG";
 import dabPengu from "./images/emotes/dabPengu.PNG";
 import beeHappy from "./images/emotes/beeHappy.PNG";
 import happyCat from "./images/emotes/happyCat.PNG";
@@ -252,9 +252,9 @@ class App extends React.Component {
     const round = this.state.pointsAmount;
     const players = this.state.players.map(player => {
       this.addAchievementSeries(calmDownDude, player, 3, player.series);
-      this.addAchievementSeries(youSickMan, player, 5, player.series);
-      this.addAchievementSeries(baka, player, 5, player.coldSeries);
-      this.addAchievementSeries(disabled, player, 7, player.coldSeries);
+      this.addAchievementSeries(perfect, player, 5, player.series);
+      this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
+      this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
       this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
       this.addAchievementFirstBlood(dabPengu, player, round);
       this.addAchievementPoints(beeHappy, player, 5);
