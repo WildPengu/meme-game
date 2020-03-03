@@ -5,10 +5,7 @@ import AddPlayer from "./AddPlayer";
 import Admin from "./Admin";
 import joyPengu from "./images/emotes/joyPengu.PNG";
 import AchievementsContainer from "./AchievementsContainer";
-import sadKitten from "./images/emotes/sadKitten.PNG";
 import perfect from "./images/emotes/perfect.PNG";
-import pozytywnyOpos from "./images/memes/pozytywnyOpos.jpg";
-import ruinedDay from "./images/emotes/sadGnar.PNG";
 import dabPengu from "./images/emotes/dabPengu.PNG";
 import beeHappy from "./images/emotes/beeHappy.PNG";
 import happyCat from "./images/emotes/happyCat.PNG";
@@ -98,7 +95,7 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
+        goodAnswers: 0
       };
       this.idCounter++;
 
@@ -206,6 +203,7 @@ class App extends React.Component {
       previousPlayers: previousPlayers,
       pointsAmount: this.state.pointsAmount + 1
     });
+    this.setAchievements();
   };
 
   changeAdminStatus = () => {
@@ -226,20 +224,13 @@ class App extends React.Component {
   };
 
   addAchievementSeries = (image, player, whenActive, series) => {
-    if (
-      series === whenActive &&
-      this.checkAchievementsForDuplicates(player, image)
-    ) {
+    if (series === whenActive && this.checkAchievementsForDuplicates(player, image)) {
       player.achievements.push(image);
     }
   };
 
   addAchievementFirstBlood = (image, player, round) => {
-    if (
-      round === 2 &&
-      this.checkAchievementsForDuplicates(player, image) &&
-      player.series > 0
-    ) {
+    if (round === 2 && this.checkAchievementsForDuplicates(player, image) && player.series > 0) {
       player.achievements.push(image);
     }
   };
@@ -274,7 +265,6 @@ class App extends React.Component {
   };
 
   render() {
-    this.setAchievements();
     return (
       <div className="gameContainer">
         <div className="header">
@@ -285,13 +275,11 @@ class App extends React.Component {
             admin={this.state.admin}
             error={this.state.error}
           />
-          <Admin changeAdminStatus={this.changeAdminStatus} />
+          <Admin changeAdminStatus={this.changeAdminStatus}/>
         </div>
-        {this.state.players.length > 0 ? (
-          <div className="pointsAmount">
-            Next reward: +{this.state.pointsAmount}
-          </div>
-        ) : null}
+        <div className="pointsAmount">
+          Next reward: +{this.state.pointsAmount}
+        </div>
 
         {this.state.players.length > 0 ? (
           <div style={{ display: "flex" }}>
