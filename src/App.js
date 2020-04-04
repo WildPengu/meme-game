@@ -14,6 +14,9 @@ import jinx from "./images/emotes/jinx.PNG";
 import meow from "./images/emotes/meow.PNG";
 import rammus from "./images/emotes/rammus.PNG";
 import iLoveIt from "./images/emotes/iLoveIt.PNG";
+import pozytywnyOpos from "./images/memes/pozytywnyOpos.jpg";
+import sadKitten from "./images/emotes/sadKitten.PNG";
+import ruinedDay from "./images/memes/eca.jpg";
 
 class App extends React.Component {
   idCounter = 4;
@@ -33,7 +36,7 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
+        goodAnwsers: 0,
       },
       {
         id: 2,
@@ -44,7 +47,7 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
+        goodAnwsers: 0,
       },
       {
         id: 3,
@@ -55,17 +58,17 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
-      }
+        goodAnwsers: 0,
+      },
     ],
-    previousPlayers: []
+    previousPlayers: [],
   };
 
   trimInputValue = () => {
     let inputValue = this.state.addPlayer;
     inputValue = inputValue.trim();
     this.setState({
-      addPlayer: inputValue
+      addPlayer: inputValue,
     });
     return inputValue;
   };
@@ -73,12 +76,12 @@ class App extends React.Component {
   inputValidation = () => {
     if (this.trimInputValue() === "") {
       this.setState({
-        error: "Type player name"
+        error: "Type player name",
       });
       return false;
     } else if (this.trimInputValue().length > 15) {
       this.setState({
-        error: "Your nick is too long"
+        error: "Your nick is too long",
       });
     } else {
       return true;
@@ -95,72 +98,44 @@ class App extends React.Component {
         achievements: [],
         series: 0,
         coldSeries: 0,
-        goodAnwsers: 0
+        goodAnwsers: 0,
       };
       this.idCounter++;
 
-      this.setState(previousState => {
+      this.setState((previousState) => {
         return { players: [...previousState.players, newPlayer] };
       });
       this.setState({
         addPlayer: "",
-        error: ""
+        error: "",
       });
     }
   };
 
-  getInputValue = e => {
+  getInputValue = (e) => {
     this.setState({
-      addPlayer: e.target.value
+      addPlayer: e.target.value,
     });
   };
 
-  deletePlayer = id => {
-    let players = this.state.players.filter(player => {
+  deletePlayer = (id) => {
+    let players = this.state.players.filter((player) => {
       return player.id !== id;
     });
     this.setState({ players });
   };
 
-  subtractPoint = id => {
+  subtractPoint = (id) => {
     this.setState({
       players: this.state.previousPlayers,
       pointsAmount: this.state.pointsAmount - 1,
-      lastActionId: 0
+      lastActionId: 0,
     });
-    // let players = this.state.players;
-    // players.findIndex(player => {
-    //   if (player.id === id && player.getPointRecently) {
-    //     if (player.points - (this.state.pointsAmount - 1) < 0) {
-    //       player.getPointRecently = false;
-    //       player.points = 0;
-    //       player.style = { opacity: "0.5" };
-    //       player.series--;
-    //     } else {
-    //       player.points = player.points - (this.state.pointsAmount - 1);
-    //       player.getPointRecently = false;
-    //       player.style = { opacity: "0.5" };
-    //       player.series--;
-    //     }
-    //     this.setState({
-    //       players,
-    //       pointsAmount: this.state.pointsAmount - 1
-    //     });
-    //   }
-    // });
-    // players.findIndex(player => {
-    //   if (player.id !== id) {
-    //     player.coldSeries--;
-    //     this.setState({
-    //       players
-    //     });
-    //   }
-    // });
   };
 
-  setDeleteToUnactive = id => {
+  setDeleteToUnactive = (id) => {
     let players = this.state.players;
-    players.findIndex(player => {
+    players.findIndex((player) => {
       if (player.id !== id) {
         player.getPointRecently = false;
         player.style = { opacity: "0.5" };
@@ -169,7 +144,7 @@ class App extends React.Component {
   };
 
   setPlayerSeries = (id, players) => {
-    players.findIndex(player => {
+    players.findIndex((player) => {
       if (player.id === id) {
         player.series++;
       } else {
@@ -184,10 +159,10 @@ class App extends React.Component {
     return players;
   };
 
-  addPoints = id => {
+  addPoints = (id) => {
     const previousPlayers = JSON.parse(JSON.stringify(this.state.players));
     let players = this.state.players;
-    players.findIndex(player => {
+    players.findIndex((player) => {
       if (player.id === id) {
         player.points = player.points + this.state.pointsAmount;
         player.goodAnwsers++;
@@ -201,20 +176,20 @@ class App extends React.Component {
       lastActionId: id,
       players,
       previousPlayers: previousPlayers,
-      pointsAmount: this.state.pointsAmount + 1
+      pointsAmount: this.state.pointsAmount + 1,
     });
   };
 
   changeAdminStatus = () => {
     this.setState({
       admin: !this.state.admin,
-      error: ""
+      error: "",
     });
   };
 
   checkAchievementsForDuplicates = (player, image) => {
     let noDuplicate = true;
-    player.achievements.map(achievement => {
+    player.achievements.map((achievement) => {
       if (achievement === image) {
         noDuplicate = false;
       }
@@ -252,12 +227,12 @@ class App extends React.Component {
 
   setAchievements = () => {
     const round = this.state.pointsAmount;
-    const players = this.state.players.map(player => {
+    const players = this.state.players.map((player) => {
       this.addAchievementSeries(joyPengu, player, 3, player.series);
       this.addAchievementSeries(perfect, player, 5, player.series);
-      // this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
-      // this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
-      // this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
+      this.addAchievementSeries(pozytywnyOpos, player, 5, player.coldSeries);
+      this.addAchievementSeries(sadKitten, player, 7, player.coldSeries);
+      this.addAchievementSeries(ruinedDay, player, 10, player.coldSeries);
       this.addAchievementFirstBlood(dabPengu, player, round);
       this.addAchievementPoints(beeHappy, player, 5);
       this.addAchievementPoints(happyCat, player, 10);
