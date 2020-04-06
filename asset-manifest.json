@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/meme-game/static/css/main.d3c522ef.chunk.css",
+    "main.js": "/meme-game/static/js/main.ccce83d6.chunk.js",
+    "main.js.map": "/meme-game/static/js/main.ccce83d6.chunk.js.map",
+    "runtime-main.js": "/meme-game/static/js/runtime-main.bec51d90.js",
+    "runtime-main.js.map": "/meme-game/static/js/runtime-main.bec51d90.js.map",
+    "static/js/2.89cd0988.chunk.js": "/meme-game/static/js/2.89cd0988.chunk.js",
+    "static/js/2.89cd0988.chunk.js.map": "/meme-game/static/js/2.89cd0988.chunk.js.map",
+    "index.html": "/meme-game/index.html",
+    "precache-manifest.0e8465cca73f66ad4fc4d078cbaf2072.js": "/meme-game/precache-manifest.0e8465cca73f66ad4fc4d078cbaf2072.js",
+    "service-worker.js": "/meme-game/service-worker.js",
+    "static/css/main.d3c522ef.chunk.css.map": "/meme-game/static/css/main.d3c522ef.chunk.css.map",
+    "static/js/2.89cd0988.chunk.js.LICENSE.txt": "/meme-game/static/js/2.89cd0988.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/meme-game/static/media/5.d9682af1.jpg",
+    "static/media/Team.css": "/meme-game/static/media/muffin.4d035e7a.jpg",
+    "static/media/beeHappy.PNG": "/meme-game/static/media/beeHappy.2428da8d.PNG",
+    "static/media/dabPengu.PNG": "/meme-game/static/media/dabPengu.33cf5a77.PNG",
+    "static/media/eca.jpg": "/meme-game/static/media/eca.c9188319.jpg",
+    "static/media/Admin.css": "/meme-game/static/media/gearsIcon.a2af81f2.png",
+    "static/media/happyCat.PNG": "/meme-game/static/media/happyCat.c49704e4.PNG",
+    "static/media/happyPengu.PNG": "/meme-game/static/media/happyPengu.3eb11dfe.PNG",
+    "static/media/iLoveIt.PNG": "/meme-game/static/media/iLoveIt.fcd25223.PNG",
+    "static/media/jinx.PNG": "/meme-game/static/media/jinx.2f70fb94.PNG",
+    "static/media/joyPengu.PNG": "/meme-game/static/media/joyPengu.b75dbbe0.PNG",
+    "static/media/meow.PNG": "/meme-game/static/media/meow.095aefd4.PNG",
+    "static/media/perfect.PNG": "/meme-game/static/media/perfect.69896781.PNG",
+    "static/media/pozytywnyOpos.jpg": "/meme-game/static/media/pozytywnyOpos.28e64c5b.jpg",
+    "static/media/rammus.PNG": "/meme-game/static/media/rammus.8bbbac1e.PNG",
+    "static/media/sadKitten.PNG": "/meme-game/static/media/sadKitten.cf8d88bb.PNG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bec51d90.js",
+    "static/js/2.89cd0988.chunk.js",
+    "static/css/main.d3c522ef.chunk.css",
+    "static/js/main.ccce83d6.chunk.js"
+  ]
+}
